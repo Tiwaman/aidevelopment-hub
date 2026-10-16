@@ -60,6 +60,81 @@
       "category": "Apparel",
       "cta": "Browse the shop",
       "skin": "tile-momento"
+    },
+    "aidevelopment-hub": {
+      "hidden": true
+    },
+    "obesetalk": {
+      "title": "Obese",
+      "italic": "Talk",
+      "tagline": "A place built with love",
+      "description": "Tools and spaces for people who deserve better. A kind, judgement-free corner of the web.",
+      "status": "live",
+      "category": "Health & Wellness",
+      "cta": "Visit"
+    },
+    "keeporreturn": {
+      "title": "Device",
+      "italic": "Rating",
+      "tagline": "Would you keep it?",
+      "description": "Rate the gadgets you own and see whether others would keep them or send them back.",
+      "status": "live",
+      "category": "Consumer",
+      "cta": "Rate a device"
+    },
+    "youtubetranscriptdownloader": {
+      "title": "Transcript",
+      "italic": "Grab",
+      "tagline": "YouTube transcripts, instantly",
+      "description": "Extract, search, copy and download YouTube video transcripts. Free and fast, no sign-up.",
+      "status": "live",
+      "category": "Productivity",
+      "cta": "Grab a transcript"
+    },
+    "gamez-offer": {
+      "title": "SkyJump",
+      "italic": "Rewards",
+      "tagline": "Jump to the sky",
+      "description": "A small game that wins real discount coupons from top brands.",
+      "status": "live",
+      "category": "Games & Rewards",
+      "cta": "Play"
+    },
+    "layoff-readiness-check": {
+      "title": "Layoff Readiness",
+      "italic": "Check",
+      "tagline": "Calm, practical, 4 minutes",
+      "description": "A free self-assessment of how exposed your job is and how strong your safety net is, with an action plan. No sign-up, no tracking.",
+      "status": "free",
+      "category": "Career",
+      "cta": "Take the check"
+    },
+    "honesteta": {
+      "title": "Honest",
+      "italic": "ETA",
+      "tagline": "When will it be done?",
+      "description": "Stop promising dates, give a confidence level. A private Monte Carlo estimator with P50, P80 and P95 finish dates, running in your browser.",
+      "status": "free",
+      "category": "Productivity",
+      "cta": "Estimate"
+    },
+    "nestfile": {
+      "title": "",
+      "italic": "Nestfile",
+      "tagline": "Everything your family would need to find",
+      "description": "A free, private, guided way to record where your accounts, policies, bills and documents are, so your family can cope if you cannot.",
+      "status": "free",
+      "category": "Personal Finance",
+      "cta": "Start a nestfile"
+    },
+    "wifitruth-india": {
+      "title": "WiFiTruth",
+      "italic": "India",
+      "tagline": "Real WiFi speeds at stays",
+      "description": "Real WiFi speeds at hostels, hotels and homestays across India, measured by travellers and verified by GPS.",
+      "status": "live",
+      "category": "Travel",
+      "cta": "Check a stay"
     }
   }
 }
