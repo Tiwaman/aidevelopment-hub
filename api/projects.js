@@ -1,4 +1,5 @@
 const APEX = "aidevelopment.in";
+const HUB_NAME = "aidevelopment-landing";
 const API = "https://api.vercel.com";
 const SUB_RE = /^([a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\.aidevelopment\.in$/;
 
@@ -69,7 +70,8 @@ async function buildProjects(token, teamId, hidden) {
     await Promise.all(
       needFallback.slice(i, i + 10).map(async (p) => {
         try {
-          hostsByProject.set(p.id, await domainsFallback(p, token, teamId));
+          const extra = await domainsFallback(p, token, teamId);
+          hostsByProject.set(p.id, hostsByProject.get(p.id).concat(extra));
         } catch (e) {
           // a single project failing its domain lookup should not sink the list
         }
@@ -81,10 +83,16 @@ async function buildProjects(token, teamId, hidden) {
   for (const p of projects) {
     const hosts = hostsByProject.get(p.id);
     if (hosts.includes(APEX) || hosts.includes("www." + APEX)) continue;
-    const host = hosts.find((h) => SUB_RE.test(h) && h !== "www." + APEX);
+    if (p.name === HUB_NAME) continue;
+    const usable = hosts.filter((h) => h !== "www." + APEX);
+    const host =
+      usable.find((h) => SUB_RE.test(h)) ||
+      usable.find((h) => !h.endsWith(".vercel.app")) ||
+      usable.find((h) => h.endsWith(".vercel.app"));
     if (!host) continue;
-    const slug = host.match(SUB_RE)[1];
-    if (slug === "www" || (hidden[slug] && hidden[slug].hidden)) continue;
+    const sub = host.match(SUB_RE);
+    const slug = sub ? sub[1] : p.name;
+    if (hidden[slug] && hidden[slug].hidden) continue;
     cards.push({
       slug,
       name: p.name,

@@ -42,15 +42,15 @@ Once deployed:
 
 ## Add a project (automatic)
 
-Deploy any project to Vercel and give it a `<name>.aidevelopment.in` domain. That's it. Within about 5 minutes it appears as a new tile on the hub, numbered in order of project creation date. No code changes.
+Every project on your Vercel account appears as a tile, except the hub itself. Hide ones you don't want with `"hidden": true` in `projects.json`. Give a project a `<name>.aidevelopment.in` domain and the tile links there; otherwise it links to another custom domain, or its `*.vercel.app` address. Within about 5 minutes it appears as a new tile on the hub, numbered in order of project creation date. No code changes.
 
-How it works: `api/projects.js` asks the Vercel API for every project on your account, keeps the ones with a `*.aidevelopment.in` subdomain (not the apex, `www`, or `*.vercel.app`), and `app.js` renders them as tiles. The static tiles in `index.html` stay as a fallback if JavaScript or the API is unavailable. The API response is cached for 5 minutes.
+How it works: `api/projects.js` asks the Vercel API for every project on your account, lists every project except the hub itself, and `app.js` renders them as tiles. The static tiles in `index.html` stay as a fallback if JavaScript or the API is unavailable. The API response is cached for 5 minutes.
 
 New tiles get an automatic name (from the Vercel project name), the Vercel project description, and a color generated from the subdomain.
 
 ### Optional: customize a tile
 
-Edit `projects.json`. Add an entry under `overrides`, keyed by the subdomain (`cab` for `cab.aidevelopment.in`). Every field is optional:
+Edit `projects.json`. Add an entry under `overrides`, keyed by the subdomain (`cab` for `cab.aidevelopment.in`), or by the Vercel project name for projects without an aidevelopment.in domain. Every field is optional:
 
 | Field | What it does |
 |---|---|
