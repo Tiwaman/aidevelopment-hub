@@ -383,6 +383,17 @@ main {
   grid-column: span 6;
 }
 
+/* Auto-discovered tiles (spans assigned by app.js) */
+.tile-w4 {
+  grid-column: span 4;
+}
+.tile-w6 {
+  grid-column: span 6;
+}
+.tile-w8 {
+  grid-column: span 8;
+}
+
 @media (max-width: 1100px) {
   .tile-large {
     grid-column: span 12;
@@ -390,8 +401,12 @@ main {
     min-height: 460px;
   }
   .tile-meeting,
-  .tile-momento {
+  .tile-momento,
+  .tile-w4 {
     grid-column: span 6;
+  }
+  .tile-w8 {
+    grid-column: span 12;
   }
 }
 
@@ -404,7 +419,10 @@ main {
   .tile-meeting,
   .tile-momento,
   .tile-pm,
-  .tile-cab {
+  .tile-cab,
+  .tile-w4,
+  .tile-w6,
+  .tile-w8 {
     grid-column: span 12;
     min-height: 280px;
   }
@@ -430,6 +448,10 @@ main {
 .tile-momento {
   background: var(--momento);
   color: var(--momento-fg);
+}
+.tile-auto {
+  background: var(--tile-bg);
+  color: var(--tile-fg);
 }
 
 .tile-corner {

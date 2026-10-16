@@ -1,15 +1,15 @@
 # aidevelopment.in
 
-The root catalog page for **aidevelopment.in**. A single static HTML/CSS landing that lists every project living under the domain — each one deployed independently as its own Vercel project.
+The root catalog page for **aidevelopment.in**. A static landing page that lists every project living under the domain, each deployed independently as its own Vercel project. New projects show up automatically.
 
 ## Stack
 
-Pure HTML + CSS. No build step, no JavaScript dependencies (other than a CSS animation and Google Fonts).
+Static HTML + CSS + a little vanilla JavaScript (`app.js`) and one serverless function (`api/projects.js`). No build step, no npm dependencies.
 
 - Typography: **Instrument Serif** + **JetBrains Mono** (via Google Fonts CDN)
 - Design direction: technicolor bento catalog
-- Single page: `index.html`
-- Single stylesheet: `styles.css`
+- Single page: `index.html`, stylesheet `styles.css`
+- Tiles: discovered by `api/projects.js`, customized by `projects.json`
 
 ## Local preview
 
@@ -19,7 +19,7 @@ Any static file server works. Easiest:
 npx serve .
 ```
 
-Or just open `index.html` in a browser.
+Or just open `index.html` in a browser. Locally there is no `/api/projects`, so the page shows the static fallback tiles in `index.html`. To preview the automatic tiles, use `vercel dev` with `VERCEL_TOKEN` set.
 
 ## Deploy to Vercel
 
@@ -29,7 +29,7 @@ vercel
 # or via the Vercel dashboard: Add New → Project → import this repo
 ```
 
-No build command required — Vercel detects static and serves from the root. The `vercel.json` enables clean URLs.
+No build command required. Vercel serves the static files from the root and deploys `api/` as serverless functions. The `vercel.json` enables clean URLs.
 
 ## Map to apex domain
 
@@ -40,11 +40,36 @@ Once deployed:
 3. Move them off the existing meeting-cost-calc project if currently attached there
 4. DNS already points correctly (Vercel handles SSL automatically)
 
-## Add or update a tile
+## Add a project (automatic)
 
-Open `index.html`, find the `<section class="grid">` block. Each tile is a single `<a>` with class `tile tile-<slug> [tile-large]`. To add a new project:
+Deploy any project to Vercel and give it a `<name>.aidevelopment.in` domain. That's it. Within about 5 minutes it appears as a new tile on the hub, numbered in order of project creation date. No code changes.
 
-1. Pick a slug and add a color block to `styles.css` (`--newproject`, `--newproject-deep`, `--newproject-fg`)
-2. Add a `.tile-newproject` skin class with `background: var(--newproject); color: var(--newproject-fg);`
-3. Append the `<a>` to the grid with the next `№ 0N` number and a sensible grid span (4, 6, or 8)
-4. Optionally add it to the hero `<aside>` workshop list
+How it works: `api/projects.js` asks the Vercel API for every project on your account, keeps the ones with a `*.aidevelopment.in` subdomain (not the apex, `www`, or `*.vercel.app`), and `app.js` renders them as tiles. The static tiles in `index.html` stay as a fallback if JavaScript or the API is unavailable. The API response is cached for 5 minutes.
+
+New tiles get an automatic name (from the Vercel project name), the Vercel project description, and a color generated from the subdomain.
+
+### Optional: customize a tile
+
+Edit `projects.json`. Add an entry under `overrides`, keyed by the subdomain (`cab` for `cab.aidevelopment.in`). Every field is optional:
+
+| Field | What it does |
+|---|---|
+| `title` and `italic` | Tile name; `italic` is shown in the serif italic |
+| `tagline` | Small caps line above the name |
+| `description` | Body text |
+| `status` | Pill in the top corner (default `new`) |
+| `cta` | Button text (default `Open it`) |
+| `tags` | List of small pills |
+| `size` | `"large"` for the big tile |
+| `color` | `{ "bg": "#2746d9", "fg": "#ffffff" }` |
+| `skin` | An existing color class, e.g. `tile-pm` |
+| `order` | Lower numbers come first; tiles without it follow by creation date |
+| `hidden` | `true` to keep a project off the hub |
+
+## Setup (one time)
+
+1. Create a token at <https://vercel.com/account/tokens> (scope it to the account or team that owns your projects).
+2. In the hub project on Vercel: **Settings → Environment Variables**, add `VERCEL_TOKEN` with that token. If the projects live under a team, also add `VERCEL_TEAM_ID` (the team ID, from Team Settings, starts with `team_`).
+3. Redeploy the hub so the variables take effect.
+
+The token is only read by the serverless function and is never sent to the browser.

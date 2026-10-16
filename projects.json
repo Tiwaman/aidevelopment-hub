@@ -1,0 +1,56 @@
+{
+  "overrides": {
+    "interview": {
+      "order": 1,
+      "title": "Screening",
+      "italic": "Interview",
+      "tagline": "A recruiter's quiet companion",
+      "description": "Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.",
+      "status": "v 0.1",
+      "cta": "Open the agent",
+      "tags": ["AI agent", "Whisper + Gemini", "Live transcription"],
+      "size": "large",
+      "skin": "tile-interview"
+    },
+    "meeting": {
+      "order": 2,
+      "title": "Meeting",
+      "italic": "Cost",
+      "tagline": "The dollar clock",
+      "description": "A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.",
+      "status": "live",
+      "cta": "Run the clock",
+      "skin": "tile-meeting"
+    },
+    "pm": {
+      "order": 3,
+      "title": "Project",
+      "italic": "Management",
+      "tagline": "Responsibility, made explicit",
+      "description": "A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.",
+      "status": "RACI",
+      "cta": "Map a project",
+      "skin": "tile-pm"
+    },
+    "cab": {
+      "order": 4,
+      "title": "Cab",
+      "italic": "Reimbursement",
+      "tagline": "Rides, settled fast",
+      "description": "Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.",
+      "status": "workflow",
+      "cta": "File a ride",
+      "skin": "tile-cab"
+    },
+    "momento": {
+      "order": 5,
+      "title": "",
+      "italic": "Momento",
+      "tagline": "A tee brand for makers",
+      "description": "Limited-run apparel celebrating the craft of building things. Small drops, considered prints.",
+      "status": "apparel",
+      "cta": "Browse the shop",
+      "skin": "tile-momento"
+    }
+  }
+}
