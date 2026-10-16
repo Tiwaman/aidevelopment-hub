@@ -1,15 +1,15 @@
 # aidevelopment.in
 
-The root catalog page for **aidevelopment.in**. A static landing page that lists every project living under the domain, each deployed independently as its own Vercel project. New projects show up automatically.
+The root catalog page for **aidevelopment.in**. A static landing page that lists every project on the account, each deployed independently as its own Vercel project. New projects show up automatically.
 
 ## Stack
 
 Static HTML + CSS + a little vanilla JavaScript (`app.js`) and one serverless function (`api/projects.js`). No build step, no npm dependencies.
 
 - Typography: **Instrument Serif** + **JetBrains Mono** (via Google Fonts CDN)
-- Design direction: technicolor bento catalog
+- Design direction: editorial catalog, a searchable list with a color dot per project
 - Single page: `index.html`, stylesheet `styles.css`
-- Tiles: discovered by `api/projects.js`, customized by `projects.json`
+- Rows: discovered by `api/projects.js`, customized by `projects.json`
 
 ## Local preview
 
@@ -19,7 +19,7 @@ Any static file server works. Easiest:
 npx serve .
 ```
 
-Or just open `index.html` in a browser. Locally there is no `/api/projects`, so the page shows the static fallback tiles in `index.html`. To preview the automatic tiles, use `vercel dev` with `VERCEL_TOKEN` set.
+Or just open `index.html` in a browser. Locally there is no `/api/projects`, so the page shows the static fallback list in `index.html`. To preview the automatic rows, use `vercel dev` with `VERCEL_TOKEN` set.
 
 ## Deploy to Vercel
 
@@ -42,28 +42,33 @@ Once deployed:
 
 ## Add a project (automatic)
 
-Every project on your Vercel account appears as a tile, except the hub itself. Hide ones you don't want with `"hidden": true` in `projects.json`. Give a project a `<name>.aidevelopment.in` domain and the tile links there; otherwise it links to another custom domain, or its `*.vercel.app` address. Within about 5 minutes it appears as a new tile on the hub, numbered in order of project creation date. No code changes.
+Every project on your Vercel account appears as a row in the catalog, except the hub itself. Hide ones you don't want with `"hidden": true` in `projects.json`. A row links to `<name>.aidevelopment.in` if the project has one; otherwise to another custom domain, or its `*.vercel.app` address. New projects show up within about 5 minutes. No code changes.
 
-How it works: `api/projects.js` asks the Vercel API for every project on your account, lists every project except the hub itself, and `app.js` renders them as tiles. The static tiles in `index.html` stay as a fallback if JavaScript or the API is unavailable. The API response is cached for 5 minutes.
+How it works: `api/projects.js` asks the Vercel API for every project on your account, lists every project except the hub itself, and `app.js` renders them as rows. The static list in `index.html` stays as a fallback if JavaScript or the API is unavailable. The API response is cached for 5 minutes.
 
-New tiles get an automatic name (from the Vercel project name), the Vercel project description, and a color generated from the subdomain.
+## The catalog page
 
-### Optional: customize a tile
+A search box (press `/` to focus it) live-filters by name, tagline, description, category, tags and domain. Next to it, a **Category** dropdown and a **Link** dropdown (aidevelopment.in subdomain, custom domain, vercel.app) combine with the search, with counts and an "N of M" result count. The filters are kept in the address bar (`?q=&cat=&link=`), so a filtered view can be shared or reloaded. Click **Name** or **Access link · Newest** in the header to sort. Each row has a color dot, a short description, and an access link showing the host. On phones, rows stack. The 5 original projects are also written into `index.html` as a plain list, shown if JavaScript or the API is unavailable.
+
+New rows get an automatic name (from the Vercel project name), the Vercel project description, the category `Uncategorized`, and a dot color generated from the subdomain.
+
+### Optional: customize a row
 
 Edit `projects.json`. Add an entry under `overrides`, keyed by the subdomain (`cab` for `cab.aidevelopment.in`), or by the Vercel project name for projects without an aidevelopment.in domain. Every field is optional:
 
 | Field | What it does |
 |---|---|
-| `title` and `italic` | Tile name; `italic` is shown in the serif italic |
-| `tagline` | Small caps line above the name |
-| `description` | Body text |
-| `status` | Pill in the top corner (default `new`) |
-| `cta` | Button text (default `Open it`) |
+| `title` and `italic` | Project name; `italic` is shown in the serif italic |
+| `tagline` | Small caps line under the name |
+| `description` | The short blurb shown in the About column (falls back to the Vercel project description) |
+| `category` | Group name for the Category filter, e.g. `"Productivity"`. Categories appear in the filter automatically; projects without one are `Uncategorized`, listed last |
+| `status` | Status pill (default `new`) |
+| `cta` | Screen-reader label for the access link (default `Open it`) |
 | `tags` | List of small pills |
-| `size` | `"large"` for the big tile |
-| `color` | `{ "bg": "#2746d9", "fg": "#ffffff" }` |
-| `skin` | An existing color class, e.g. `tile-pm` |
-| `order` | Lower numbers come first; tiles without it follow by creation date |
+| `size` | Ignored (kept for older files) |
+| `color` | `{ "bg": "#2746d9" }`, the dot color |
+| `skin` | Older color name (`tile-pm` etc.), used only for the dot color |
+| `order` | Lower numbers come first; the rest follow by creation date |
 | `hidden` | `true` to keep a project off the hub |
 
 ## Setup (one time)

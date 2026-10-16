@@ -39,179 +39,72 @@
     <main>
       <!-- Hero -->
       <section class="hero">
-        <div class="hero-grid">
-          <div class="hero-text">
-            <p class="eyebrow lift-in delay-1">
-              Now showing <span class="rule-inline" aria-hidden>—</span>
-              <span id="hero-count">Five experiments</span>
-            </p>
-            <h1 class="display lift-in delay-2">
-              A workshop of
-              <span class="italic">small,</span>
-              <br />
-              useful things.
-            </h1>
-            <p class="lede lift-in delay-3">
-              Each one tries to make some part of work less tedious. Some are
-              tools, one is a tee brand. Pick a piece.
-            </p>
-          </div>
-          <aside class="hero-aside lift-in delay-4">
-            <p class="aside-label">In the workshop</p>
-            <ul class="aside-list">
-              <li>
-                <span class="aside-num">01</span> Screening Interview
-              </li>
-              <li>
-                <span class="aside-num">02</span> Meeting Cost
-              </li>
-              <li>
-                <span class="aside-num">03</span> Project Management
-              </li>
-              <li>
-                <span class="aside-num">04</span> Cab Reimbursement
-              </li>
-              <li>
-                <span class="aside-num">05</span> Momento
-              </li>
-            </ul>
-            <p class="aside-footer">By Aman Tiwari</p>
-          </aside>
-        </div>
+        <p class="eyebrow lift-in delay-1">
+          Now showing <span class="rule-inline" aria-hidden>—</span>
+          <span id="hero-count">Five experiments</span>
+        </p>
+        <h1 class="display lift-in delay-2">
+          A workshop of
+          <span class="italic">small,</span>
+          <br />
+          useful things.
+        </h1>
+        <p class="lede lift-in delay-3">
+          Each one tries to make some part of work less tedious. Some are
+          tools, one is a tee brand. Pick a piece.
+        </p>
       </section>
 
-      <!-- Bento grid -->
-      <section class="grid">
-        <!-- 01 — Interview (large) -->
-        <a
-          href="https://interview.aidevelopment.in"
-          class="tile tile-interview tile-large lift-in delay-2"
-          target="_self"
-        >
-          <div class="tile-corner">
-            <span class="tile-num">№ 01</span>
-            <span class="tile-status">v 0.1</span>
+      <!-- Catalog -->
+      <section class="catalog" aria-label="Projects">
+        <div class="toolbar" id="toolbar" hidden>
+          <label class="search">
+            <span class="eyebrow">Search</span>
+            <span class="search-box">
+              <input
+                id="q"
+                type="search"
+                placeholder="Name, tag, description or domain"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <kbd aria-hidden="true">/</kbd>
+            </span>
+          </label>
+          <label class="filter">
+            <span class="eyebrow">Category</span>
+            <select id="cat"></select>
+          </label>
+          <label class="filter">
+            <span class="eyebrow">Link</span>
+            <select id="link"></select>
+          </label>
+          <div class="toolbar-status">
+            <p class="result-count" id="result-count" aria-live="polite"></p>
+            <button type="button" class="clear" id="clear" hidden>Clear filters</button>
           </div>
-          <div class="tile-bottom">
-            <p class="tile-tagline">A recruiter's quiet companion</p>
-            <h2 class="tile-name">
-              Screening <span class="italic">Interview</span>
-            </h2>
-            <p class="tile-desc">
-              Listens through the call. Surfaces follow-ups in the moment.
-              Hands back an evidence-based candidate report when you're done.
-            </p>
-            <div class="tile-meta">
-              <span class="meta-pill">AI agent</span>
-              <span class="meta-pill">Whisper + Gemini</span>
-              <span class="meta-pill">Live transcription</span>
-            </div>
-            <div class="tile-cta">
-              <span>Open the agent</span>
-              <span class="arrow" aria-hidden>↗</span>
-            </div>
-          </div>
-        </a>
+        </div>
 
-        <!-- 02 — Meeting Cost -->
-        <a
-          href="https://meeting.aidevelopment.in"
-          class="tile tile-meeting lift-in delay-3"
-        >
-          <div class="tile-corner">
-            <span class="tile-num">№ 02</span>
-            <span class="tile-status">live</span>
-          </div>
-          <div class="tile-bottom">
-            <p class="tile-tagline">The dollar clock</p>
-            <h2 class="tile-name">
-              Meeting <span class="italic">Cost</span>
-            </h2>
-            <p class="tile-desc">
-              A live calculator that tallies the price of your meeting as it
-              runs. A gentle nudge toward shorter agendas.
-            </p>
-            <div class="tile-cta">
-              <span>Run the clock</span>
-              <span class="arrow" aria-hidden>↗</span>
-            </div>
-          </div>
-        </a>
+        <div class="rows-head" id="rows-head" hidden>
+          <span><button type="button" data-sort="order" aria-pressed="true">№</button></span>
+          <span><button type="button" data-sort="name" aria-pressed="false">Name</button></span>
+          <span>About</span>
+          <span>Category</span>
+          <span>Status</span>
+          <span><button type="button" data-sort="newest" aria-pressed="false">Access link · Newest</button></span>
+        </div>
 
-        <!-- 03 — Project Management -->
-        <a
-          href="https://pm.aidevelopment.in"
-          class="tile tile-pm lift-in delay-4"
-        >
-          <div class="tile-corner">
-            <span class="tile-num">№ 03</span>
-            <span class="tile-status">RACI</span>
-          </div>
-          <div class="tile-bottom">
-            <p class="tile-tagline">Responsibility, made explicit</p>
-            <h2 class="tile-name">
-              Project <span class="italic">Management</span>
-            </h2>
-            <p class="tile-desc">
-              A lightweight RACI mapper for who-does-what. Less spreadsheet
-              wrangling, more shipping.
-            </p>
-            <div class="tile-cta">
-              <span>Map a project</span>
-              <span class="arrow" aria-hidden>↗</span>
-            </div>
-          </div>
-        </a>
+        <ol class="rows" id="rows">
+          <li class="row" style="--dot:#d2492a"><span class="row-num">01</span><span class="row-name"><a class="row-link" href="https://interview.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Screening <span class="italic">Interview</span></span></a><span class="row-tagline">A recruiter's quiet companion</span></span><span class="row-desc" title="Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.">Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.</span><span class="row-cat"><span class="row-category">Recruiting</span><span class="row-tags"><span class="meta-pill">AI agent</span><span class="meta-pill">Whisper + Gemini</span><span class="meta-pill">Live transcription</span></span></span><span class="row-status">v 0.1</span><a class="row-host" href="https://interview.aidevelopment.in" aria-label="Open the agent: interview.aidevelopment.in"><span>interview.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row" style="--dot:#2746d9"><span class="row-num">02</span><span class="row-name"><a class="row-link" href="https://meeting.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Meeting <span class="italic">Cost</span></span></a><span class="row-tagline">The dollar clock</span></span><span class="row-desc" title="A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.">A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.</span><span class="row-cat"><span class="row-category">Productivity</span></span><span class="row-status">live</span><a class="row-host" href="https://meeting.aidevelopment.in" aria-label="Run the clock: meeting.aidevelopment.in"><span>meeting.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row" style="--dot:#1a8c6e"><span class="row-num">03</span><span class="row-name"><a class="row-link" href="https://pm.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Project <span class="italic">Management</span></span></a><span class="row-tagline">Responsibility, made explicit</span></span><span class="row-desc" title="A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.">A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.</span><span class="row-cat"><span class="row-category">Productivity</span></span><span class="row-status">RACI</span><a class="row-host" href="https://pm.aidevelopment.in" aria-label="Map a project: pm.aidevelopment.in"><span>pm.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row" style="--dot:#d99b1f"><span class="row-num">04</span><span class="row-name"><a class="row-link" href="https://cab.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Cab <span class="italic">Reimbursement</span></span></a><span class="row-tagline">Rides, settled fast</span></span><span class="row-desc" title="Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.">Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.</span><span class="row-cat"><span class="row-category">Finance &amp; Ops</span></span><span class="row-status">workflow</span><a class="row-host" href="https://cab.aidevelopment.in" aria-label="File a ride: cab.aidevelopment.in"><span>cab.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row" style="--dot:#c43079"><span class="row-num">05</span><span class="row-name"><a class="row-link" href="https://momento.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title"><span class="italic">Momento</span></span></a><span class="row-tagline">A tee brand for makers</span></span><span class="row-desc" title="Limited-run apparel celebrating the craft of building things. Small drops, considered prints.">Limited-run apparel celebrating the craft of building things. Small drops, considered prints.</span><span class="row-cat"><span class="row-category">Apparel</span></span><span class="row-status">apparel</span><a class="row-host" href="https://momento.aidevelopment.in" aria-label="Browse the shop: momento.aidevelopment.in"><span>momento.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        </ol>
 
-        <!-- 04 — Cab Reimbursement -->
-        <a
-          href="https://cab.aidevelopment.in"
-          class="tile tile-cab lift-in delay-5"
-        >
-          <div class="tile-corner">
-            <span class="tile-num">№ 04</span>
-            <span class="tile-status">workflow</span>
-          </div>
-          <div class="tile-bottom">
-            <p class="tile-tagline">Rides, settled fast</p>
-            <h2 class="tile-name">
-              Cab <span class="italic">Reimbursement</span>
-            </h2>
-            <p class="tile-desc">
-              Submit, approve, reconcile. A no-nonsense workflow for office
-              cab expenses that doesn't need a finance team.
-            </p>
-            <div class="tile-cta">
-              <span>File a ride</span>
-              <span class="arrow" aria-hidden>↗</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- 05 — Momento -->
-        <a
-          href="https://momento.aidevelopment.in"
-          class="tile tile-momento lift-in delay-6"
-        >
-          <div class="tile-corner">
-            <span class="tile-num">№ 05</span>
-            <span class="tile-status">apparel</span>
-          </div>
-          <div class="tile-bottom">
-            <p class="tile-tagline">A tee brand for makers</p>
-            <h2 class="tile-name">
-              <span class="italic">Momento</span>
-            </h2>
-            <p class="tile-desc">
-              Limited-run apparel celebrating the craft of building things.
-              Small drops, considered prints.
-            </p>
-            <div class="tile-cta">
-              <span>Browse the shop</span>
-              <span class="arrow" aria-hidden>↗</span>
-            </div>
-          </div>
-        </a>
+        <p class="empty" id="empty" hidden>
+          Nothing matches. Try fewer words, or clear the filters.
+        </p>
       </section>
 
       <!-- Colophon -->

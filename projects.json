@@ -7,8 +7,13 @@
       "tagline": "A recruiter's quiet companion",
       "description": "Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.",
       "status": "v 0.1",
+      "category": "Recruiting",
       "cta": "Open the agent",
-      "tags": ["AI agent", "Whisper + Gemini", "Live transcription"],
+      "tags": [
+        "AI agent",
+        "Whisper + Gemini",
+        "Live transcription"
+      ],
       "size": "large",
       "skin": "tile-interview"
     },
@@ -19,6 +24,7 @@
       "tagline": "The dollar clock",
       "description": "A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.",
       "status": "live",
+      "category": "Productivity",
       "cta": "Run the clock",
       "skin": "tile-meeting"
     },
@@ -29,6 +35,7 @@
       "tagline": "Responsibility, made explicit",
       "description": "A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.",
       "status": "RACI",
+      "category": "Productivity",
       "cta": "Map a project",
       "skin": "tile-pm"
     },
@@ -39,6 +46,7 @@
       "tagline": "Rides, settled fast",
       "description": "Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.",
       "status": "workflow",
+      "category": "Finance & Ops",
       "cta": "File a ride",
       "skin": "tile-cab"
     },
@@ -49,6 +57,7 @@
       "tagline": "A tee brand for makers",
       "description": "Limited-run apparel celebrating the craft of building things. Small drops, considered prints.",
       "status": "apparel",
+      "category": "Apparel",
       "cta": "Browse the shop",
       "skin": "tile-momento"
     }

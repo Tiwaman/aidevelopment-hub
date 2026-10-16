@@ -64,7 +64,8 @@ async function buildProjects(token, teamId, hidden) {
   for (const p of projects) hostsByProject.set(p.id, hostnamesFrom(p));
 
   const needFallback = projects.filter(
-    (p) => !hostsByProject.get(p.id).some((h) => !h.endsWith(".vercel.app"))
+    (p) =>
+      !hostsByProject.get(p.id).some((h) => !h.endsWith(".vercel.app") && h !== APEX && h !== "www." + APEX)
   );
   for (let i = 0; i < needFallback.length; i += 10) {
     await Promise.all(
@@ -82,9 +83,8 @@ async function buildProjects(token, teamId, hidden) {
   const cards = [];
   for (const p of projects) {
     const hosts = hostsByProject.get(p.id);
-    if (hosts.includes(APEX) || hosts.includes("www." + APEX)) continue;
     if (p.name === HUB_NAME) continue;
-    const usable = hosts.filter((h) => h !== "www." + APEX);
+    const usable = hosts.filter((h) => h !== APEX && h !== "www." + APEX);
     const host =
       usable.find((h) => SUB_RE.test(h)) ||
       usable.find((h) => !h.endsWith(".vercel.app")) ||
