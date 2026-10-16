@@ -6,8 +6,8 @@ The root catalog page for **aidevelopment.in**. A static landing page that lists
 
 Static HTML + CSS + a little vanilla JavaScript (`app.js`) and one serverless function (`api/projects.js`). No build step, no npm dependencies.
 
-- Typography: **Instrument Serif** + **JetBrains Mono** (via Google Fonts CDN)
-- Design direction: editorial catalog, a searchable list with a color dot per project
+- Typography: **Instrument Serif** (headline) + **Inter** (everything else), via Google Fonts CDN
+- Design: one serif display headline (Instrument Serif) with Inter for everything else, one background and text colour, one blue accent for interactive states only. Surfaces are separated by tone, not borders. Light and dark follow the system setting.
 - Single page: `index.html`, stylesheet `styles.css`
 - Rows: discovered by `api/projects.js`, customized by `projects.json`
 
@@ -48,9 +48,9 @@ How it works: `api/projects.js` asks the Vercel API for every project on your ac
 
 ## The catalog page
 
-A search box (press `/` to focus it) live-filters by name, tagline, description, category, tags and domain. Next to it, a **Category** dropdown and a **Link** dropdown (aidevelopment.in subdomain, custom domain, vercel.app) combine with the search, with counts and an "N of M" result count. The filters are kept in the address bar (`?q=&cat=&link=`), so a filtered view can be shared or reloaded. Click **Name** or **Access link · Newest** in the header to sort. Each row has a color dot, a short description, and an access link showing the host. On phones, rows stack. The 5 original projects are also written into `index.html` as a plain list, shown if JavaScript or the API is unavailable.
+A search box (press `/` to focus it) live-filters by name, tagline, description, category, tags and domain. Next to it are a **Category** dropdown, a **Link** dropdown (aidevelopment.in subdomain, custom domain, vercel.app) and a **Sort** dropdown (curated, name, newest). Search and both filters combine, with an "N of M" count. The filters are kept in the address bar (`?q=&cat=&link=`), so a filtered view can be shared or reloaded. Each row shows the name, a one-line description (full text on hover, wrapped on phones), the category, and an access link with the host; the whole row is also clickable. The 5 original projects are written into `index.html` as a plain list, shown if JavaScript or the API is unavailable (regenerate them from `rowHtml` in `app.js` if you change the row markup).
 
-New rows get an automatic name (from the Vercel project name), the Vercel project description, the category `Uncategorized`, and a dot color generated from the subdomain.
+New rows get an automatic name (from the Vercel project name), the Vercel project description, the category `Uncategorized`, and no extra styling.
 
 ### Optional: customize a row
 
@@ -58,16 +58,16 @@ Edit `projects.json`. Add an entry under `overrides`, keyed by the subdomain (`c
 
 | Field | What it does |
 |---|---|
-| `title` and `italic` | Project name; `italic` is shown in the serif italic |
-| `tagline` | Small caps line under the name |
+| `title` and `italic` | Project name (the two are joined into one plain name) |
+| `tagline` | Searchable only (not shown) |
 | `description` | The short blurb shown in the About column (falls back to the Vercel project description) |
 | `category` | Group name for the Category filter, e.g. `"Productivity"`. Categories appear in the filter automatically; projects without one are `Uncategorized`, listed last |
-| `status` | Status pill (default `new`) |
+| `status` | Kept for compatibility, not shown |
 | `cta` | Screen-reader label for the access link (default `Open it`) |
-| `tags` | List of small pills |
+| `tags` | Extra search keywords (not shown) |
 | `size` | Ignored (kept for older files) |
-| `color` | `{ "bg": "#2746d9" }`, the dot color |
-| `skin` | Older color name (`tile-pm` etc.), used only for the dot color |
+| `color` | Ignored (kept for older files) |
+| `skin` | Ignored (kept for older files) |
 | `order` | Lower numbers come first; the rest follow by creation date |
 | `hidden` | `true` to keep a project off the hub |
 

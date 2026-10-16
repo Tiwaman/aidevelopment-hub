@@ -3,151 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>AI Development · A catalog of small useful things</title>
     <meta
       name="description"
-      content="A workshop of small tools, each one trying to make some part of work less tedious. Screening interviews, meeting cost calc, project management, cab reimbursements, and Momento — a tee brand for makers."
+      content="A workshop of small tools, each one trying to make some part of work less tedious. Search the catalog and open what you need."
     />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◐</text></svg>" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="masthead">
-      <div class="masthead-inner">
-        <a href="/" class="wordmark">
-          <span class="wordmark-mark" aria-hidden>◐</span>
-          <span class="wordmark-text">
-            <span>AI</span>
-            <span class="italic">Development</span>
-          </span>
-        </a>
-        <div class="masthead-meta">
-          <span>MMXXVI · No. 01</span>
-          <span class="sep" aria-hidden>·</span>
-          <span>A catalog of small useful things</span>
-        </div>
+      <div class="wrap masthead-inner">
+        <a href="/" class="wordmark">AI Development</a>
+        <a href="https://github.com/Tiwaman" class="nav-link">GitHub</a>
       </div>
     </header>
 
-    <main>
-      <!-- Hero -->
+    <main class="wrap">
       <section class="hero">
-        <p class="eyebrow lift-in delay-1">
-          Now showing <span class="rule-inline" aria-hidden>—</span>
-          <span id="hero-count">Five experiments</span>
-        </p>
-        <h1 class="display lift-in delay-2">
-          A workshop of
-          <span class="italic">small,</span>
-          <br />
-          useful things.
-        </h1>
-        <p class="lede lift-in delay-3">
-          Each one tries to make some part of work less tedious. Some are
-          tools, one is a tee brand. Pick a piece.
+        <h1 class="display rise rise-1">A workshop of small, useful things.</h1>
+        <p class="lede rise rise-2">
+          <span id="hero-count">Five experiments</span>, each one trying to make
+          some part of work less tedious. Search the list, then open what you
+          need.
         </p>
       </section>
 
-      <!-- Catalog -->
       <section class="catalog" aria-label="Projects">
-        <div class="toolbar" id="toolbar" hidden>
-          <label class="search">
-            <span class="eyebrow">Search</span>
-            <span class="search-box">
-              <input
-                id="q"
-                type="search"
-                placeholder="Name, tag, description or domain"
-                autocomplete="off"
-                spellcheck="false"
-              />
-              <kbd aria-hidden="true">/</kbd>
-            </span>
+        <div class="toolbar rise rise-3" id="toolbar" hidden>
+          <label class="field field-search">
+            <span class="sr-only">Search projects</span>
+            <input
+              id="q"
+              type="search"
+              placeholder="Search name, topic or domain"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <kbd aria-hidden="true">/</kbd>
           </label>
-          <label class="filter">
-            <span class="eyebrow">Category</span>
+          <label class="field field-select">
+            <span class="sr-only">Category</span>
             <select id="cat"></select>
           </label>
-          <label class="filter">
-            <span class="eyebrow">Link</span>
+          <label class="field field-select">
+            <span class="sr-only">Link type</span>
             <select id="link"></select>
           </label>
-          <div class="toolbar-status">
-            <p class="result-count" id="result-count" aria-live="polite"></p>
-            <button type="button" class="clear" id="clear" hidden>Clear filters</button>
-          </div>
+          <label class="field field-select">
+            <span class="sr-only">Sort</span>
+            <select id="sort">
+              <option value="order">Sort: Curated</option>
+              <option value="name">Sort: Name A to Z</option>
+              <option value="newest">Sort: Newest first</option>
+            </select>
+          </label>
         </div>
 
-        <div class="rows-head" id="rows-head" hidden>
-          <span><button type="button" data-sort="order" aria-pressed="true">№</button></span>
-          <span><button type="button" data-sort="name" aria-pressed="false">Name</button></span>
-          <span>About</span>
-          <span>Category</span>
-          <span>Status</span>
-          <span><button type="button" data-sort="newest" aria-pressed="false">Access link · Newest</button></span>
+        <div class="toolbar-status" id="status" hidden>
+          <p id="result-count" aria-live="polite"></p>
+          <button type="button" class="clear" id="clear" hidden>Clear filters</button>
         </div>
 
         <ol class="rows" id="rows">
-          <li class="row" style="--dot:#d2492a"><span class="row-num">01</span><span class="row-name"><a class="row-link" href="https://interview.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Screening <span class="italic">Interview</span></span></a><span class="row-tagline">A recruiter's quiet companion</span></span><span class="row-desc" title="Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.">Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.</span><span class="row-cat"><span class="row-category">Recruiting</span><span class="row-tags"><span class="meta-pill">AI agent</span><span class="meta-pill">Whisper + Gemini</span><span class="meta-pill">Live transcription</span></span></span><span class="row-status">v 0.1</span><a class="row-host" href="https://interview.aidevelopment.in" aria-label="Open the agent: interview.aidevelopment.in"><span>interview.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
-          <li class="row" style="--dot:#2746d9"><span class="row-num">02</span><span class="row-name"><a class="row-link" href="https://meeting.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Meeting <span class="italic">Cost</span></span></a><span class="row-tagline">The dollar clock</span></span><span class="row-desc" title="A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.">A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.</span><span class="row-cat"><span class="row-category">Productivity</span></span><span class="row-status">live</span><a class="row-host" href="https://meeting.aidevelopment.in" aria-label="Run the clock: meeting.aidevelopment.in"><span>meeting.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
-          <li class="row" style="--dot:#1a8c6e"><span class="row-num">03</span><span class="row-name"><a class="row-link" href="https://pm.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Project <span class="italic">Management</span></span></a><span class="row-tagline">Responsibility, made explicit</span></span><span class="row-desc" title="A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.">A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.</span><span class="row-cat"><span class="row-category">Productivity</span></span><span class="row-status">RACI</span><a class="row-host" href="https://pm.aidevelopment.in" aria-label="Map a project: pm.aidevelopment.in"><span>pm.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
-          <li class="row" style="--dot:#d99b1f"><span class="row-num">04</span><span class="row-name"><a class="row-link" href="https://cab.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title">Cab <span class="italic">Reimbursement</span></span></a><span class="row-tagline">Rides, settled fast</span></span><span class="row-desc" title="Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.">Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.</span><span class="row-cat"><span class="row-category">Finance &amp; Ops</span></span><span class="row-status">workflow</span><a class="row-host" href="https://cab.aidevelopment.in" aria-label="File a ride: cab.aidevelopment.in"><span>cab.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
-          <li class="row" style="--dot:#c43079"><span class="row-num">05</span><span class="row-name"><a class="row-link" href="https://momento.aidevelopment.in"><span class="dot" aria-hidden="true"></span><span class="row-title"><span class="italic">Momento</span></span></a><span class="row-tagline">A tee brand for makers</span></span><span class="row-desc" title="Limited-run apparel celebrating the craft of building things. Small drops, considered prints.">Limited-run apparel celebrating the craft of building things. Small drops, considered prints.</span><span class="row-cat"><span class="row-category">Apparel</span></span><span class="row-status">apparel</span><a class="row-host" href="https://momento.aidevelopment.in" aria-label="Browse the shop: momento.aidevelopment.in"><span>momento.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row"><span class="row-name"><a class="row-link" href="https://interview.aidevelopment.in"><span class="row-title">Screening Interview</span></a></span><span class="row-desc" title="Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.">Listens through the call. Surfaces follow-ups in the moment. Hands back an evidence-based candidate report when you're done.</span><span class="row-cat">Recruiting</span><a class="row-host" href="https://interview.aidevelopment.in" aria-label="Open the agent: interview.aidevelopment.in"><span>interview.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row"><span class="row-name"><a class="row-link" href="https://meeting.aidevelopment.in"><span class="row-title">Meeting Cost</span></a></span><span class="row-desc" title="A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.">A live calculator that tallies the price of your meeting as it runs. A gentle nudge toward shorter agendas.</span><span class="row-cat">Productivity</span><a class="row-host" href="https://meeting.aidevelopment.in" aria-label="Run the clock: meeting.aidevelopment.in"><span>meeting.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row"><span class="row-name"><a class="row-link" href="https://pm.aidevelopment.in"><span class="row-title">Project Management</span></a></span><span class="row-desc" title="A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.">A lightweight RACI mapper for who-does-what. Less spreadsheet wrangling, more shipping.</span><span class="row-cat">Productivity</span><a class="row-host" href="https://pm.aidevelopment.in" aria-label="Map a project: pm.aidevelopment.in"><span>pm.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row"><span class="row-name"><a class="row-link" href="https://cab.aidevelopment.in"><span class="row-title">Cab Reimbursement</span></a></span><span class="row-desc" title="Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.">Submit, approve, reconcile. A no-nonsense workflow for office cab expenses that doesn't need a finance team.</span><span class="row-cat">Finance &amp; Ops</span><a class="row-host" href="https://cab.aidevelopment.in" aria-label="File a ride: cab.aidevelopment.in"><span>cab.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li class="row"><span class="row-name"><a class="row-link" href="https://momento.aidevelopment.in"><span class="row-title">Momento</span></a></span><span class="row-desc" title="Limited-run apparel celebrating the craft of building things. Small drops, considered prints.">Limited-run apparel celebrating the craft of building things. Small drops, considered prints.</span><span class="row-cat">Apparel</span><a class="row-host" href="https://momento.aidevelopment.in" aria-label="Browse the shop: momento.aidevelopment.in"><span>momento.aidevelopment.in</span><span class="arrow" aria-hidden="true">↗</span></a></li>
         </ol>
 
         <p class="empty" id="empty" hidden>
           Nothing matches. Try fewer words, or clear the filters.
         </p>
       </section>
-
-      <!-- Colophon -->
-      <section class="colophon">
-        <div class="col-grid">
-          <div>
-            <p class="eyebrow">§ Colophon</p>
-            <h3 class="display-small">
-              Set in <span class="italic">Instrument Serif</span> &amp; JetBrains
-              Mono.
-            </h3>
-            <p class="colophon-body">
-              Everything you see is hand-built — no templates, no kits. Each
-              project gets its own deployment, its own design system, its own
-              voice. This page is the catalog.
-            </p>
-          </div>
-          <ul class="contact-list">
-            <li>
-              <span class="eyebrow">Made by</span>
-              <span>Aman Tiwari</span>
-            </li>
-            <li>
-              <span class="eyebrow">Github</span>
-              <a href="https://github.com/Tiwaman" class="ink-link"
-                >@Tiwaman ↗</a
-              >
-            </li>
-            <li>
-              <span class="eyebrow">Year</span>
-              <span>MMXXVI</span>
-            </li>
-          </ul>
-        </div>
-      </section>
     </main>
 
-    <footer>
-      <p>
-        <span class="eyebrow">aidevelopment.in</span>
-        <span class="sep" aria-hidden>·</span>
-        <span>A catalog of small useful things</span>
-      </p>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <span>Made by Aman Tiwari</span>
+        <a href="https://github.com/Tiwaman">github.com/Tiwaman</a>
+      </div>
     </footer>
 
     <script src="/app.js" defer></script>
